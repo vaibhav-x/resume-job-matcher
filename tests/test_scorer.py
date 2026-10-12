@@ -1,5 +1,6 @@
 from src.parser import extract_resume_text, clean_raw_text
 from src.scorer import compute_similarity
+from src.scorer import compare_skills
 
 SAMPLE_JOB_DESCRIPTION = """
 We are looking for a Machine Learning Intern with experience in Python,
@@ -17,3 +18,8 @@ if __name__ == "__main__":
 
     score = compute_similarity(cleaned, SAMPLE_JOB_DESCRIPTION)
     print(f"Match Score: {score}%")
+
+    skill_comparison = compare_skills(cleaned, SAMPLE_JOB_DESCRIPTION)
+    print(f"\nMatched Skills: {skill_comparison['matched_skills']}")
+    print(f"Missing Skills: {skill_comparison['missing_skills']}")
+    print(f"Skill Match: {skill_comparison['skill_match_percent']}%")
